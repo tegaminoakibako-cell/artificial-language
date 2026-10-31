@@ -8,6 +8,7 @@
   軟音は合成済みの1文字を直接入力する（NFC に合わせるため）。
   locale_extra_keys="false"：端末の言語設定による追加のキー（£・æ など）を入れない。
   modmap：自動大文字化などで shift が有効になっても、文字を小文字のまま出力する。
+  fn キーや円を描くジェスチャーでも、記号（æ・€・µ・£ など）に変えずに同じ文字を出力する。
 -->
 <keyboard name="人工言語 音韻" script="latin" locale_extra_keys="false">
   <modmap>
@@ -35,6 +36,30 @@
     <shift a="h" b="h" />
     <shift a="w" b="w" />
     <shift a="j" b="j" />
+    <fn a="p" b="p" />
+    <fn a="ṕ" b="ṕ" />
+    <fn a="k" b="k" />
+    <fn a="ḱ" b="ḱ" />
+    <fn a="m" b="m" />
+    <fn a="ḿ" b="ḿ" />
+    <fn a="n" b="n" />
+    <fn a="ń" b="ń" />
+    <fn a="l" b="l" />
+    <fn a="ĺ" b="ĺ" />
+    <fn a="s" b="s" />
+    <fn a="ś" b="ś" />
+    <fn a="c" b="c" />
+    <fn a="ć" b="ć" />
+    <fn a="a" b="a" />
+    <fn a="e" b="e" />
+    <fn a="i" b="i" />
+    <fn a="o" b="o" />
+    <fn a="u" b="u" />
+    <fn a="t" b="t" />
+    <fn a="f" b="f" />
+    <fn a="h" b="h" />
+    <fn a="w" b="w" />
+    <fn a="j" b="j" />
   </modmap>
   <row>
     <key width="1.2" c="p" n="ṕ" />
