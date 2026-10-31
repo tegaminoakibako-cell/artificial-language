@@ -6,8 +6,36 @@
   3段目：音素表記・発音表記・説明用の記号と backspace。
   shift は置かない（正規形は小文字のみ。SPECIFICATION_PHONOLOGY.md 5.2）。
   軟音は合成済みの1文字を直接入力する（NFC に合わせるため）。
+  locale_extra_keys="false"：端末の言語設定による追加のキー（£・æ など）を入れない。
+  modmap：自動大文字化などで shift が有効になっても、文字を小文字のまま出力する。
 -->
-<keyboard name="人工言語 音韻" script="latin">
+<keyboard name="人工言語 音韻" script="latin" locale_extra_keys="false">
+  <modmap>
+    <shift a="p" b="p" />
+    <shift a="ṕ" b="ṕ" />
+    <shift a="k" b="k" />
+    <shift a="ḱ" b="ḱ" />
+    <shift a="m" b="m" />
+    <shift a="ḿ" b="ḿ" />
+    <shift a="n" b="n" />
+    <shift a="ń" b="ń" />
+    <shift a="l" b="l" />
+    <shift a="ĺ" b="ĺ" />
+    <shift a="s" b="s" />
+    <shift a="ś" b="ś" />
+    <shift a="c" b="c" />
+    <shift a="ć" b="ć" />
+    <shift a="a" b="a" />
+    <shift a="e" b="e" />
+    <shift a="i" b="i" />
+    <shift a="o" b="o" />
+    <shift a="u" b="u" />
+    <shift a="t" b="t" />
+    <shift a="f" b="f" />
+    <shift a="h" b="h" />
+    <shift a="w" b="w" />
+    <shift a="j" b="j" />
+  </modmap>
   <row>
     <key width="1.2" c="p" n="ṕ" />
     <key width="1.2" c="k" n="ḱ" />
