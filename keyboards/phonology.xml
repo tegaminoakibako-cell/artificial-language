@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  人工言語：音韻・語用のキーボード（Unexpected Keyboard のカスタムレイアウト）
+  1段目：硬音（タップ）と、対になる軟音（上スワイプ）。右端は文法用キーボードへの切り替え。
+  2段目：母音と、対を持たない子音。
+  3段目：音素表記・発音表記・説明用の記号と backspace。
+  shift は置かない（正規形は小文字のみ。SPECIFICATION_PHONOLOGY.md 5.2）。
+  軟音は合成済みの1文字を直接入力する（NFC に合わせるため）。
+-->
+<keyboard name="人工言語 音韻" script="latin">
+  <row>
+    <key width="1.2" c="p" n="ṕ" />
+    <key width="1.2" c="k" n="ḱ" />
+    <key width="1.2" c="m" n="ḿ" />
+    <key width="1.2" c="n" n="ń" />
+    <key width="1.2" c="l" n="ĺ" />
+    <key width="1.2" c="s" n="ś" />
+    <key width="1.2" c="c" n="ć" />
+    <key width="1.6" c="switch_forward" />
+  </row>
+  <row>
+    <key c="a" />
+    <key c="e" />
+    <key c="i" />
+    <key c="o" />
+    <key c="u" />
+    <key c="t" />
+    <key c="f" />
+    <key c="h" />
+    <key c="w" />
+    <key c="j" />
+  </row>
+  <row>
+    <key width="0.95" c="/" />
+    <key width="0.95" c="ʃ" />
+    <key width="0.95" c="ʲ" />
+    <key width="0.95" c="ː" />
+    <key width="0.95" c="." />
+    <key width="0.95" c="[" />
+    <key width="0.95" c="]" />
+    <key width="0.95" c="*" />
+    <key width="0.95" c="＋" />
+    <key width="1.45" c="backspace" />
+  </row>
+</keyboard>
