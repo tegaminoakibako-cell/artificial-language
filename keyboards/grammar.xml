@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  人工言語：文法用のキーボード（Unexpected Keyboard のカスタムレイアウト）
+  SPECIFICATION.md で使われている数学記号・括弧などをまとめたもの。
+  日本語（仮の表記）とラテン文字のメタ変数は、通常の日本語キーボードで入力する。
+  1段目：数字（上スワイプで上付き、下スワイプで下付き）と ₙ（上 ⁿ、下 ₖ）。
+  2段目：括弧。
+  3段目：等号・集合・論理・写像の記号。
+  4段目：区切り記号（, : ;）、比較、演算、ギリシャ文字（σ：上 τ、下 Σ、左 ∀、右 ∃）、`、backspace。
+  . の上スワイプは結合用のサーカムフレックス（P̂・Ê などを作る）。
+  locale_extra_keys="false"：端末の言語設定による追加のキーを入れない。
+  modmap：shift・fn・円を描くジェスチャーで、文字が別の記号や機能キー（fn+1 → F1 など）に変わらないようにする。
+  : と , は、キーの値の区切りと区別するため、単引用符で囲んで指定している。
+  レイアウトの切り替えは、最下段の空白キーの上下スワイプで行う。
+-->
+<keyboard name="人工言語 文法" script="latin" locale_extra_keys="false">
+  <modmap>
+    <shift a="1" b="1" />
+    <shift a="2" b="2" />
+    <shift a="3" b="3" />
+    <shift a="4" b="4" />
+    <shift a="5" b="5" />
+    <shift a="6" b="6" />
+    <shift a="7" b="7" />
+    <shift a="8" b="8" />
+    <shift a="9" b="9" />
+    <shift a="0" b="0" />
+    <shift a="(" b="(" />
+    <shift a=")" b=")" />
+    <shift a="{" b="{" />
+    <shift a="}" b="}" />
+    <shift a="[" b="[" />
+    <shift a="]" b="]" />
+    <shift a="=" b="=" />
+    <shift a="','" b="','" />
+    <shift a="':'" b="':'" />
+    <shift a=";" b=";" />
+    <shift a="." b="." />
+    <shift a="&lt;" b="&lt;" />
+    <shift a="&gt;" b="&gt;" />
+    <shift a="+" b="+" />
+    <shift a="`" b="`" />
+    <fn a="1" b="1" />
+    <fn a="2" b="2" />
+    <fn a="3" b="3" />
+    <fn a="4" b="4" />
+    <fn a="5" b="5" />
+    <fn a="6" b="6" />
+    <fn a="7" b="7" />
+    <fn a="8" b="8" />
+    <fn a="9" b="9" />
+    <fn a="0" b="0" />
+    <fn a="(" b="(" />
+    <fn a=")" b=")" />
+    <fn a="{" b="{" />
+    <fn a="}" b="}" />
+    <fn a="[" b="[" />
+    <fn a="]" b="]" />
+    <fn a="=" b="=" />
+    <fn a="','" b="','" />
+    <fn a="':'" b="':'" />
+    <fn a=";" b=";" />
+    <fn a="." b="." />
+    <fn a="&lt;" b="&lt;" />
+    <fn a="&gt;" b="&gt;" />
+    <fn a="+" b="+" />
+    <fn a="`" b="`" />
+  </modmap>
+  <row>
+    <key width="0.9" c="1" n="¹" s="₁" />
+    <key width="0.9" c="2" n="²" s="₂" />
+    <key width="0.9" c="3" n="³" s="₃" />
+    <key width="0.9" c="4" n="⁴" s="₄" />
+    <key width="0.9" c="5" n="⁵" s="₅" />
+    <key width="0.9" c="6" n="⁶" s="₆" />
+    <key width="0.9" c="7" n="⁷" s="₇" />
+    <key width="0.9" c="8" n="⁸" s="₈" />
+    <key width="0.9" c="9" n="⁹" s="₉" />
+    <key width="0.9" c="0" n="⁰" s="₀" />
+    <key width="1.0" c="ₙ" n="ⁿ" s="ₖ" />
+  </row>
+  <row>
+    <key c="(" />
+    <key c=")" />
+    <key c="{" />
+    <key c="}" />
+    <key c="[" />
+    <key c="]" />
+    <key c="⟨" />
+    <key c="⟩" />
+    <key c="⟦" />
+    <key c="⟧" />
+  </row>
+  <row>
+    <key c="=" n="≠" />
+    <key c="∈" n="∉" />
+    <key c="⊆" />
+    <key c="∩" n="∧" />
+    <key c="∪" />
+    <key c="∖" />
+    <key c="∅" />
+    <key c="⊥" n="⊢" />
+    <key c="∗" n="×" />
+    <key c="↦" n="→" s="↔" />
+  </row>
+  <row>
+    <key width="0.85" c="','" />
+    <key width="0.85" c="':'" />
+    <key width="0.85" c=";" />
+    <key width="0.85" c="." n="◌̂:'̂'" />
+    <key width="0.85" c="…" />
+    <key width="0.85" c="&lt;" n="≤" />
+    <key width="0.85" c="&gt;" n="≥" />
+    <key width="0.85" c="+" n="⁺" s="÷" />
+    <key width="0.85" c="σ" n="τ" s="Σ" w="∀" e="∃" />
+    <key width="0.85" c="`" />
+    <key width="1.5" c="backspace" />
+  </row>
+</keyboard>
