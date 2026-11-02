@@ -9,7 +9,7 @@
 - 同じ区切り：正しい列のままで、語の区切りは変わらない（別の語になる。文法・語彙の担当）
 - 区切りの違い：正しい列のままで、語の区切りが変わる（検出できない）
 
-使い方：python3 tools/phonology_check.py [--model alpha|alpha_prime|beta] [--final-stress] [--examples N]\n\n件数は、内側の2つの文字単位を総当たりし、前後の文脈を代表の文字単位で補って数えた値である。
+使い方：python3 tools/phonology_check.py [--model alpha|alpha_prime|beta|beta_prime] [--final-stress] [--examples N]\n\n件数は、内側の2つの文字単位を総当たりし、前後の文脈を代表の文字単位で補って数えた値である。
 """
 
 import argparse
@@ -91,6 +91,10 @@ MODELS = {
     "beta": Model("β（語末の母音が a・e・o、語中が i・u）",
                   before=lambda ch: False, after=lambda ch: ch[1] not in HIGH,
                   start_ok=lambda ch: True, end_ok=lambda ch: ch[1] not in HIGH),
+    # β′：語末の母音を前舌（/e/・/i/）、語中の母音を後舌（/a/・/o/・/u/）とする
+    "beta_prime": Model("β′（語末の母音が e・i、語中が a・o・u）",
+                        before=lambda ch: False, after=lambda ch: ch[1] in ("e", "i"),
+                        start_ok=lambda ch: True, end_ok=lambda ch: ch[1] in ("e", "i")),
 }
 
 
