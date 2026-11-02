@@ -177,17 +177,30 @@ def rule_del_gem(ph, info):
             yield ph[:i] + ph[i + 2:], i, i + 2, i
 
 
-def rule_del_inaudible(ph, info):
-    """A2・A3＋E10：母音が脱落し、子音の前の /h/・/j/・/w/ が聞こえなくなる"""
+def _del_inaudible(ph, info, consonants):
+    """母音が脱落し、子音の前に残った子音（consonants のいずれか）が聞こえなくなる。
+
+    結果として、その文字単位が丸ごと消える。脱落するのは、共鳴音の後の狭い母音（A2）か語末の母音（A3）。
+    """
     for i in range(1, len(ph) - 1):
-        if not is_vowel(ph[i]) or ph[i - 1] not in ("h", "j", "w"):
+        if not is_vowel(ph[i]) or ph[i - 1] not in consonants:
             continue
-        if not (i + 1 < len(ph) and not is_vowel(ph[i + 1])):
+        if is_vowel(ph[i + 1]):
             continue
         high_after_son = ph[i] in HIGH and ph[i - 1] in SONORANTS
         word_final = (i + 1) in info["bounds"]
         if high_after_son or word_final:
             yield ph[:i - 1] + ph[i + 1:], i - 1, i + 1, i - 1
+
+
+def rule_del_inaudible(ph, info):
+    """A2・A3＋E10：母音が脱落し、子音の前の /h/・/j/・/w/ が聞こえなくなる"""
+    yield from _del_inaudible(ph, info, ("h", "j", "w"))
+
+
+def rule_del_unreleased(ph, info):
+    """A3＋E10（閉鎖音）：語末の母音が脱落し、次の子音の前で /p/・/t/・/k/ の破裂が聞こえなくなる（推測）"""
+    yield from _del_inaudible(ph, info, ("p", "t", "k"))
 
 
 def rule_A4(ph, info):
@@ -283,7 +296,8 @@ RULES = [
     ("A3", "音韻", rule_A3),
     ("A3+聞き取り", "音韻", rule_A3_asp),
     ("A2・A3+E3", "音韻", rule_del_gem),
-    ("A2・A3+E10", "文法・語彙", rule_del_inaudible),
+    ("A2・A3+E10", "音韻", rule_del_inaudible),
+    ("A3+E10（閉鎖音）", "音韻", rule_del_unreleased),
     ("A4", "文法・語彙", rule_A4),
     ("文字単位の脱落", "文法・語彙", rule_chunk_del),
     ("文字単位の挿入", "文法・語彙", rule_chunk_ins),
