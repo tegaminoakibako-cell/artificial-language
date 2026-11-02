@@ -162,6 +162,17 @@ def rule_A3_asp(ph, info):
             yield ph[:i] + ph[i + 2:], i, i + 2, i
 
 
+def rule_del_gem(ph, info):
+    """A2・A3＋E3：母音が脱落して同じ子音が2つ並び、長さを区別しない聞き手には子音1つに聞こえる"""
+    for i in range(1, len(ph) - 1):
+        if not is_vowel(ph[i]) or ph[i - 1] != ph[i + 1] or is_vowel(ph[i - 1]):
+            continue
+        high_after_son = ph[i] in HIGH and ph[i - 1] in SONORANTS
+        word_final = (i + 1) in info["bounds"]
+        if high_after_son or word_final:
+            yield ph[:i] + ph[i + 2:], i, i + 2, i
+
+
 def rule_del_inaudible(ph, info):
     """A2・A3＋E10：母音が脱落し、子音の前の /h/・/j/・/w/ が聞こえなくなる"""
     for i in range(1, len(ph) - 1):
@@ -267,6 +278,7 @@ RULES = [
     ("A2", "音韻", rule_A2),
     ("A3", "音韻", rule_A3),
     ("A3+聞き取り", "音韻", rule_A3_asp),
+    ("A2・A3+E3", "音韻", rule_del_gem),
     ("A2・A3+E10", "文法・語彙", rule_del_inaudible),
     ("A4", "文法・語彙", rule_A4),
     ("文字単位の脱落", "文法・語彙", rule_chunk_del),
