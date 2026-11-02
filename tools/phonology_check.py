@@ -14,7 +14,7 @@
 
 import argparse
 import itertools
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 # ---------------------------------------------------------------- 音素と文字単位（2.3〜2.5）
 
@@ -297,14 +297,14 @@ RULES = [
 # ---------------------------------------------------------------- 総当たり
 
 def map_bounds(bounds, start, end_old, end_new):
-    """変更の外側にある境目を、変更後の列の位置に写す。内側の境目は数だけ返す。"""
+    """変更の外側にある境目を、変更後の列の位置に写す（重なった境目も数える）。内側の境目は数だけ返す。"""
     delta = end_new - end_old
-    outside, inside = set(), 0
+    outside, inside = Counter(), 0
     for b in bounds:
         if b <= start:
-            outside.add(b)
+            outside[b] += 1
         elif b >= end_old:
-            outside.add(b + delta)
+            outside[b + delta] += 1
         else:
             inside += 1
     return outside, inside
@@ -317,8 +317,8 @@ def classify(orig_bounds, new_ph, edit, model, at_start, at_end):
     start, end_old, end_new = edit
     nb = boundaries(new_chunks, model, at_start, at_end)
     o_out, o_in = map_bounds(orig_bounds, start, end_old, end_new)
-    n_out = {b for b in nb if b <= start or b >= end_new}
-    n_in = len(nb) - len(n_out)
+    n_out = Counter(b for b in nb if b <= start or b >= end_new)
+    n_in = len(nb) - sum(n_out.values())
     return "同じ区切り" if (o_out == n_out and o_in == n_in) else "区切りの違い"
 
 
