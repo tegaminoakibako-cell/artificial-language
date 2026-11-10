@@ -60,11 +60,16 @@ def parse(path):
         r = rules[cur]
         m = re.match(r'^- (定義|導入)する語：(.*)$', line)
         if m:
-            r['defs' if m.group(1) == '定義' else 'intro'] = split_items(m.group(2))
+            key = 'defs' if m.group(1) == '定義' else 'intro'
+            if r[key]:
+                errors.append(f'[項目の重複] {cur} の{m.group(1)}する語')
+            r[key] = split_items(m.group(2))
             continue
         m = re.match(r'^- 依拠先（(実現|語|その他)）：(.*)$', line)
         if m:
             kind = {'実現': 'real', '語': 'word', 'その他': 'other'}[m.group(1)]
+            if r[kind]:
+                errors.append(f'[項目の重複] {cur} の依拠先（{m.group(1)}）')
             for item in split_items(m.group(2)):
                 mm = re.match(r'^(' + ID + r')(（.+）)?$', item)
                 if not mm:
